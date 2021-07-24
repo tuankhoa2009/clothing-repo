@@ -45,7 +45,13 @@ const Directory = (props) =>{
              {
                  sections.map(item => {
                      return (
-                        <MenuItem key={item.id} title={item.title} imageUrl={item.imageUrl} size={item.size} />
+                        <MenuItem 
+                        key={item.id} 
+                        title={item.title} 
+                        imageUrl={item.imageUrl} 
+                        size={item.size} 
+                        linkUrl={item.linkUrl}
+                        />
                      )
                  })
              }   
