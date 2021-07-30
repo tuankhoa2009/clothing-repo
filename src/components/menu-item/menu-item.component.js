@@ -8,8 +8,6 @@ const MenuItem = (props)=>{
 
     const match = useRouteMatch();
 
-    console.log(props);
-
     return (
         <div className={`${props.size} menu-item`}
         onClick={() => history.push(`${match.url}${props.linkUrl}`)}
