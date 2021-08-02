@@ -10,7 +10,6 @@ import {auth,createUserProfileDocument} from './firebase/firebase.utils';
 import {setCurrentUserAct} from '../src/reducer/userReducer';
 import {useDispatch} from 'react-redux';
 
-import { async } from 'q';
 
 
 

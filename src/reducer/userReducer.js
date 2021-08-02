@@ -9,7 +9,6 @@ const counterSlice = createSlice({
     initialState,
     reducers: {
       setCurrentUserAct(state,action) {
-        console.log(action.payload);
         return {
           ...state,
           currentUser: action.payload

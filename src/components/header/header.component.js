@@ -1,13 +1,16 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import './header.styles.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import {auth} from '../../firebase/firebase.utils';
 import { Link } from 'react-router-dom';
 import {useSelector} from 'react-redux';
-
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropDown from '../cart-dropdown/cart-dropdown.component';
 const Header = (props) => {
 
-    const currentUser = useSelector((state) =>state.currentUser);
+    const currentUser = useSelector((state) =>state.userReducer.currentUser);
+    const hiddenState = useSelector((state) => state.cartReducer.hidden);
+   
 
     return (
         <div className='header'>
@@ -30,9 +33,11 @@ const Header = (props) => {
                         </Link>
 
                     )}
-                {/* <Cart currentUser={props.currentUser} /> */}
-
+               <CartIcon/>
             </div>
+            {
+                hiddenState ? null :<CartDropDown/>
+            }
         </div>
     )
 }
