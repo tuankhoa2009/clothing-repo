@@ -5,6 +5,7 @@ import {Route,Switch} from 'react-router-dom';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './components/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import CheckOutPage from '../src/pages/checkout/checkout.component';
 
 import {auth,createUserProfileDocument} from './firebase/firebase.utils';
 import {setCurrentUserAct} from '../src/reducer/userReducer';
@@ -54,6 +55,7 @@ function App() {
       <Route path='/' exact component ={HomePage} />
       <Route path='/shop'  component ={ShopPage} />
       <Route path='/signin'  component ={SignInAndSignUpPage} />
+      <Route path='/checkout'  component ={CheckOutPage} />
     </Switch>
     </div>
   );

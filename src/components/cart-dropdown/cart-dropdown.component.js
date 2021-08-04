@@ -2,23 +2,31 @@ import React from 'react';
 
 import CustomButton from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {setHiddenCart} from '../../reducer/cartReducer';
+
 
 import './cart-dropdown.styles.scss';
 
 const CartDropDown = () =>{
-    
-    const cartItems = useSelector(state =>  state.cartReducer.cartItems)
-    console.log(cartItems);
+    const history = useHistory();
+    const cartItems = useSelector(state =>  state.cartReducer.cartItems);
+    const disptach = useDispatch();
  return (
     <div className='cart-dropdown'>
         <div className='cart-items'>
         {
-            cartItems.map(cartItem => (
-            <CartItem key={cartItem.id} item={cartItem} />))
+            cartItems.length ? ( 
+                cartItems.map(cartItem => (
+                <CartItem key={cartItem.id} item={cartItem} />)))
+            : ( <span className='empty-message'>Your cart is empty </span>  )
         }
         </div>
-        <CustomButton>
+        <CustomButton onClick={()=>{ 
+            history.push('/checkout')
+            disptach(setHiddenCart(false))
+             } }>
                 GO TO CHECKOUT
         </CustomButton>
     </div>

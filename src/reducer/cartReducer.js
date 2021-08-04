@@ -16,9 +16,22 @@ const addItemToCart =(cartItems,cartItemToAdd)=>{
   }
   
   return [...cartItems,{...cartItemToAdd,quantity:1}]
- 
-
 }
+
+const removeItemToCart =(cartItems,cartItemToAdd)=>{
+
+  const existingCartItem = cartItems.find(item => item.id === cartItemToAdd.id);
+
+  if(existingCartItem.quantity === 1)
+  {
+    return cartItems.filter(item => item.id !== cartItemToAdd.id);
+  }
+
+    return cartItems.map(item =>
+      item.id === cartItemToAdd.id ? {...item,quantity:item.quantity - 1} : item
+    );
+}
+
 
 
 const cartReducer = createSlice({
@@ -32,15 +45,25 @@ const cartReducer = createSlice({
         }
       },
       setCartItemAction(state,action){
-
         return{
           ...state,
           cartItems:addItemToCart(state.cartItems,action.payload)
         }
-
+      },
+      removeItemCartAction(state,action){
+        return{
+          ...state,
+          cartItems:state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
+        }
+      },
+      removeItemCartArrowAction(state,action){
+        return{
+          ...state,
+          cartItems:removeItemToCart(state.cartItems,action.payload)
+        }
       }
     },
   })
 
-export const { setHiddenCart,setCartItemAction } = cartReducer.actions
+export const { setHiddenCart,setCartItemAction,removeItemCartAction,removeItemCartArrowAction } = cartReducer.actions
 export default cartReducer.reducer
